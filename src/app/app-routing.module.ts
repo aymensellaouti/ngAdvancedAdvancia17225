@@ -12,7 +12,8 @@ import { AddCvComponent } from "./cv/add-cv/add-cv.component";
 import { CvComponent } from "./cv/cv/cv.component";
 import { DetailsCvComponent } from "./cv/details-cv/details-cv.component";
 import { RhComponent } from "./optimizationPattern/rh/rh.component";
-
+import { MasterDetailComponent } from "./cv/master-detail/master-detail.component";
+// cv/add
 const routes: Route[] = [
   { path: "login", component: LoginComponent },
   { path: "rh", component: RhComponent },
@@ -21,6 +22,11 @@ const routes: Route[] = [
     component: CvComponent,
   },
   { path: "cv/add", component: AddCvComponent, canActivate: [AuthGuard] },
+  {
+    path: "cv/list",
+    component: MasterDetailComponent,
+    children: [{ path: ":id", component: DetailsCvComponent }],
+  },
   { path: "cv/:id", component: DetailsCvComponent },
   {
     path: "",
@@ -28,6 +34,7 @@ const routes: Route[] = [
     children: [
       { path: "todo", component: TodoComponent },
       { path: "word", component: MiniWordComponent },
+      /* { path: "color", component: ColorComponent }, */
     ],
   },
   {

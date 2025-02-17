@@ -11,7 +11,7 @@
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="['']navbarNavAltMarkup"
+      data-bs-target="[''] navbarNavAltMarkup"
       aria-controls="navbarNavAltMarkup"
       aria-expanded="false"
       aria-label="Toggle navigation"
@@ -38,9 +38,15 @@
         <a
           *ngIf="authService.isAuthenticated()"
           class="nav-link"
-          [routerLink]="['cv/add']"
+          [routerLink]="['cv', 'add']"
           routerLinkActive="active text-primary"
           >Add Cv</a
+        >
+        <a
+          class="nav-link"
+          [routerLink]="['cv', 'list']"
+          routerLinkActive="active text-primary"
+          >Master Details</a
         >
         <a
           class="nav-link"
