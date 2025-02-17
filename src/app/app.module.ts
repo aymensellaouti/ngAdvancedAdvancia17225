@@ -57,6 +57,7 @@ import { CONSTANTES } from "../config/const.config";
 import { FakeCvService } from "./cv/services/fake-cv.service";
 import { Logger2Service } from "./services/logger2.service";
 import { ILoggerToken } from "./injectionTokens/ILogger.token";
+import { UUID_PROVIDER } from "./providers/uuid.provide";
 
 @NgModule({
   declarations: [
@@ -134,6 +135,7 @@ import { ILoggerToken } from "./injectionTokens/ILogger.token";
       provide: CvService,
       useClass: CONSTANTES.env == "production" ? CvService : FakeCvService,
     },
+    UUID_PROVIDER,
   ],
   bootstrap: [AppComponent],
 })
