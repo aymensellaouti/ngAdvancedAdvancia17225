@@ -49,6 +49,14 @@ import { ProductsComponent } from "./products/products.component";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { AutocompleteComponent } from "./cv/autocomplete/autocomplete.component";
 import { SliderComponent } from "./rxjs/slider/slider.component";
+import { loggerServiceFactory } from "./factory/loggerService.factory";
+import { LOGGER_SERVICE_TOKEN } from "./injectionTokens/loggerService.injection-token";
+import { LoggerService } from "./services/logger.service";
+import { CvService } from "./cv/services/cv.service";
+import { CONSTANTES } from "../config/const.config";
+import { FakeCvService } from "./cv/services/fake-cv.service";
+import { Logger2Service } from "./services/logger2.service";
+import { ILoggerToken } from "./injectionTokens/ILogger.token";
 
 @NgModule({
   declarations: [
@@ -105,7 +113,28 @@ import { SliderComponent } from "./rxjs/slider/slider.component";
       registrationStrategy: "registerWhenStable:30000",
     }),
   ],
-  providers: [AuthInterceptorProvider],
+  providers: [
+    AuthInterceptorProvider,
+    LoggerService,
+    /* {
+      provide: LoggerService,
+      useClass: Logger2Service,
+    }, */
+    {
+      provide: ILoggerToken,
+      useClass: LoggerService,
+      multi: true,
+    },
+    {
+      provide: ILoggerToken,
+      useClass: Logger2Service,
+      multi: true,
+    },
+    {
+      provide: CvService,
+      useClass: CONSTANTES.env == "production" ? CvService : FakeCvService,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

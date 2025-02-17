@@ -1,25 +1,28 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { Cv } from "../model/cv";
 import { LoggerService } from "../../services/logger.service";
 import { ToastrService } from "ngx-toastr";
 import { CvService } from "../services/cv.service";
 import { EMPTY, Observable, catchError, of } from "rxjs";
+import { ILoggerToken } from "../../injectionTokens/ILogger.token";
 @Component({
   selector: "app-cv",
   templateUrl: "./cv.component.html",
   styleUrls: ["./cv.component.css"],
+  providers: [],
 })
 export class CvComponent {
   cvs: Cv[] = [];
   selectedCv: Cv | null = null;
   /*   selectedCv: Cv | null = null; */
   date = new Date();
-
+  loggers = inject(ILoggerToken);
   constructor(
     private logger: LoggerService,
     private toastr: ToastrService,
     private cvService: CvService
   ) {
+    this.loggers.forEach((logger) => logger.logger("je suis le cvComponent"));
     this.cvService.getCvs().subscribe({
       next: (cvs) => {
         this.cvs = cvs;
