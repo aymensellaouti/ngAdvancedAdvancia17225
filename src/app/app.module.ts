@@ -58,6 +58,7 @@ import { FakeCvService } from "./cv/services/fake-cv.service";
 import { Logger2Service } from "./services/logger2.service";
 import { ILoggerToken } from "./injectionTokens/ILogger.token";
 import { UUID_PROVIDER } from "./providers/uuid.provide";
+import { WeekTodoComponent } from './todo/week-todo/week-todo.component';
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import { UUID_PROVIDER } from "./providers/uuid.provide";
     RhComponent,
     UserListComponent,
     ProductsComponent,
+    WeekTodoComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ import { ToastrService } from "ngx-toastr";
 import { CvService } from "../services/cv.service";
 import { EMPTY, Observable, catchError, of } from "rxjs";
 import { ILoggerToken } from "../../injectionTokens/ILogger.token";
+import { TodoService } from "../../todo/service/todo.service";
 @Component({
   selector: "app-cv",
   templateUrl: "./cv.component.html",
@@ -17,6 +18,7 @@ export class CvComponent {
   /*   selectedCv: Cv | null = null; */
   date = new Date();
   loggers = inject(ILoggerToken);
+  todoService = inject(TodoService);
   constructor(
     private logger: LoggerService,
     private toastr: ToastrService,
