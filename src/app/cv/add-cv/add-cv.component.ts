@@ -9,8 +9,8 @@ import { CvService } from "../services/cv.service";
 import { Cv } from "../model/cv";
 import { ToastrService } from "ngx-toastr";
 import { Router } from "@angular/router";
-import { APP_ROUTES } from "../../../config/routes.config";
 import { APP_CONSTANTES } from "../../config/app_const.config";
+import { APP_ROUTES } from "../../config/app-routes.config";
 
 @Component({
   selector: "app-add-cv",

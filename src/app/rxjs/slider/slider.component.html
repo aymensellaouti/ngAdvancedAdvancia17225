@@ -1,6 +1,6 @@
 <img
-  src="assets/images/"
-  [ngStyle]="{ width: 150, height: 150 }"
+  src="assets/images/{{ paths$ | async }}"
+  [ngStyle]="{ 'width.px': 150, 'height.px': 150 }"
   class="rounded-circle"
   alt="NF404"
 />

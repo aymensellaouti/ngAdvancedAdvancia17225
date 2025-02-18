@@ -3,8 +3,9 @@ import { Cv } from "../model/cv";
 import { CvService } from "../services/cv.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
-import { APP_ROUTES } from "../../../config/routes.config";
+
 import { AuthService } from "../../auth/services/auth.service";
+import { APP_ROUTES } from "../../config/app-routes.config";
 
 @Component({
   selector: "app-details-cv",

@@ -31,20 +31,20 @@
         <a
           class="nav-link"
           [routerLinkActiveOptions]="{ exact: true }"
-          [routerLink]="['cv']"
+          [routerLink]="[routes.cv]"
           routerLinkActive="active text-primary"
           >Cv</a
         >
         <a
           *ngIf="authService.isAuthenticated()"
           class="nav-link"
-          [routerLink]="['cv', 'add']"
+          [routerLink]="[routes.cv, 'add']"
           routerLinkActive="active text-primary"
           >Add Cv</a
         >
         <a
           class="nav-link"
-          [routerLink]="['cv', 'list']"
+          [routerLink]="[routes.cv, 'list']"
           routerLinkActive="active text-primary"
           >Master Details</a
         >
@@ -71,6 +71,12 @@
           [routerLink]="['rh']"
           routerLinkActive="active text-primary"
           >Rh</a
+        >
+        <a
+          class="nav-link"
+          [routerLink]="[routes.rxjs]"
+          routerLinkActive="active text-primary"
+          >Observable</a
         >
         <a
           *ngIf="!authService.isAuthenticated()"

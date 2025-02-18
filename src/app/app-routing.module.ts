@@ -15,17 +15,24 @@ import { RhComponent } from "./optimizationPattern/rh/rh.component";
 import { MasterDetailComponent } from "./cv/master-detail/master-detail.component";
 import { getAllCvsResolver } from "./cv/resolvers/get-all-cvs.resolver";
 import { canLeaveGuard } from "./guards/can-leave.guard";
+import { APP_ROUTES } from "./config/app-routes.config";
+import { TestObservableComponent } from "./rxjs/test-observable/test-observable.component";
+
 // cv/add
 const routes: Route[] = [
   { path: "login", component: LoginComponent },
   { path: "rh", component: RhComponent },
   {
-    path: "cv",
+    path: APP_ROUTES.cv,
     component: CvComponent,
   },
-  { path: "cv/add", component: AddCvComponent, canActivate: [authGuard] },
   {
-    path: "cv/list",
+    path: `${APP_ROUTES.cv}/add`,
+    component: AddCvComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: `${APP_ROUTES.cv}/list`,
     component: MasterDetailComponent,
     resolve: {
       cvs: getAllCvsResolver,
@@ -43,6 +50,7 @@ const routes: Route[] = [
         canDeactivate: [canLeaveGuard],
       },
       { path: "word", component: MiniWordComponent },
+      { path: APP_ROUTES.rxjs, component: TestObservableComponent },
       /* { path: "color", component: ColorComponent }, */
     ],
   },

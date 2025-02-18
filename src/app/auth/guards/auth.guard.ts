@@ -9,7 +9,7 @@ import {
 } from "@angular/router";
 import { Observable } from "rxjs";
 import { AuthService } from "../services/auth.service";
-import { APP_ROUTES } from "../../../config/routes.config";
+import { APP_ROUTES } from "../../config/app-routes.config";
 
 export const authGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,

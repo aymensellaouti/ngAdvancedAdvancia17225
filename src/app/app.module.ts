@@ -61,6 +61,7 @@ import { UUID_PROVIDER } from "./providers/uuid.provide";
 import { WeekTodoComponent } from "./todo/week-todo/week-todo.component";
 import { MasterDetailComponent } from "./cv/master-detail/master-detail.component";
 import { NgxUiLoaderModule } from "ngx-ui-loader";
+import { FromOfComponent } from "./rxjs/from-of/from-of.component";
 
 @NgModule({
   declarations: [
@@ -103,6 +104,7 @@ import { NgxUiLoaderModule } from "ngx-ui-loader";
     ProductsComponent,
     WeekTodoComponent,
     MasterDetailComponent,
+    FromOfComponent,
   ],
   imports: [
     BrowserModule,
