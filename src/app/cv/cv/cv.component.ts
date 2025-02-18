@@ -13,19 +13,23 @@ import { TodoService } from "../../todo/service/todo.service";
   providers: [],
 })
 export class CvComponent {
-  cvs: Cv[] = [];
+  private cvService = inject(CvService);
+  cvs$: Observable<Cv[]> = this.cvService.getCvs().pipe(
+    catchError(() => {
+      this.toastr.error(`
+      Attention!! Les données sont fictives, problème avec le serveur.
+      Veuillez contacter l'admin.`);
+      return of(this.cvService.getFakeCvs());
+    })
+  );
   selectedCv: Cv | null = null;
   /*   selectedCv: Cv | null = null; */
   date = new Date();
   loggers = inject(ILoggerToken);
   todoService = inject(TodoService);
-  constructor(
-    private logger: LoggerService,
-    private toastr: ToastrService,
-    private cvService: CvService
-  ) {
+  constructor(private logger: LoggerService, private toastr: ToastrService) {
     this.loggers.forEach((logger) => logger.logger("je suis le cvComponent"));
-    this.cvService.getCvs().subscribe({
+    /* this.cvService.getCvs().subscribe({
       next: (cvs) => {
         this.cvs = cvs;
       },
@@ -35,7 +39,7 @@ export class CvComponent {
           Attention!! Les données sont fictives, problème avec le serveur.
           Veuillez contacter l'admin.`);
       },
-    });
+    }); */
     this.logger.logger("je suis le cvComponent");
     this.toastr.info("Bienvenu dans notre CvTech");
   }

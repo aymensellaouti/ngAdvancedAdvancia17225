@@ -6,7 +6,7 @@ import { ToastrService } from "ngx-toastr";
 
 import { AuthService } from "../../auth/services/auth.service";
 import { APP_ROUTES } from "../../config/app-routes.config";
-import { Observable } from "rxjs";
+import { catchError, EMPTY, Observable, switchMap } from "rxjs";
 
 @Component({
   selector: "app-details-cv",
@@ -19,10 +19,17 @@ export class DetailsCvComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private toastr = inject(ToastrService);
   public authService = inject(AuthService);
-
-  cv$: Observable<Cv> = this.cvService.getCvById(
-    this.activatedRoute.snapshot.params["id"]
+  cv$: Observable<Cv> = this.activatedRoute.params.pipe(
+    switchMap((params) => this.cvService.getCvById(+params["id"])),
+    catchError((e) => {
+      this.router.navigate([APP_ROUTES.cv]);
+      return EMPTY;
+    })
   );
+
+  /* this.cvService.getCvById(
+    this.activatedRoute.snapshot.params["id"]
+  ); */
 
   constructor() {}
 
