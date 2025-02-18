@@ -58,8 +58,9 @@ import { FakeCvService } from "./cv/services/fake-cv.service";
 import { Logger2Service } from "./services/logger2.service";
 import { ILoggerToken } from "./injectionTokens/ILogger.token";
 import { UUID_PROVIDER } from "./providers/uuid.provide";
-import { WeekTodoComponent } from './todo/week-todo/week-todo.component';
-import { MasterDetailComponent } from './cv/master-detail/master-detail.component';
+import { WeekTodoComponent } from "./todo/week-todo/week-todo.component";
+import { MasterDetailComponent } from "./cv/master-detail/master-detail.component";
+import { NgxUiLoaderModule } from "ngx-ui-loader";
 
 @NgModule({
   declarations: [
@@ -111,6 +112,7 @@ import { MasterDetailComponent } from './cv/master-detail/master-detail.componen
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxUiLoaderModule,
     ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
