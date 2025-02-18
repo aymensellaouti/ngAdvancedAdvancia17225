@@ -10,13 +10,13 @@ import { ActivatedRoute, Router } from "@angular/router";
   styleUrls: ["./master-detail.component.css"],
 })
 export class MasterDetailComponent {
-  cvs: Cv[] = [];
-  router = inject(Router);
-  toastr = inject(ToastrService);
   cvService = inject(CvService);
   acr = inject(ActivatedRoute);
+  cvs: Cv[] = this.acr.snapshot.data["cvs"];
+  router = inject(Router);
+  toastr = inject(ToastrService);
   constructor() {
-    this.cvService.getCvs().subscribe({
+    /*     this.cvService.getCvs().subscribe({
       next: (cvs) => {
         this.cvs = cvs;
       },
@@ -26,7 +26,7 @@ export class MasterDetailComponent {
         Attention!! Les données sont fictives, problème avec le serveur.
         Veuillez contacter l'admin.`);
       },
-    });
+    }); */
   }
 
   getSelectedCv(cv: Cv) {
