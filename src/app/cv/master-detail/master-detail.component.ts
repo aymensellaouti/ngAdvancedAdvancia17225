@@ -29,7 +29,7 @@ export class MasterDetailComponent {
     }); */
   }
 
-  getSelectedCv(cv: Cv) {
+  /*  getSelectedCv(cv: Cv) {
     this.router.navigate([cv.id], { relativeTo: this.acr });
-  }
+  } */
 }
