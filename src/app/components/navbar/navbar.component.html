@@ -36,7 +36,7 @@
           >Cv</a
         >
         <a
-          *ngIf="authService.isLoggedIn$"
+          *ngIf="authService.isLoggedIn$ | async"
           class="nav-link"
           [routerLink]="[routes.cv, 'add']"
           routerLinkActive="active text-primary"

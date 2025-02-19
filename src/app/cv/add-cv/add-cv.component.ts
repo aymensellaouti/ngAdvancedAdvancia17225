@@ -50,7 +50,13 @@ export class AddCvComponent {
       updateOn: "change",
     }
   );
-  constructor() {}
+  constructor() {
+    this.age.valueChanges.subscribe({
+      next: (age) => {
+        age < 18 ? this.path?.disable() : this.path?.enable();
+      },
+    });
+  }
 
   addCv() {
     this.cvService.addCv(this.form.value as Cv).subscribe({
