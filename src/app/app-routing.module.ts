@@ -17,6 +17,7 @@ import { getAllCvsResolver } from "./cv/resolvers/get-all-cvs.resolver";
 import { canLeaveGuard } from "./guards/can-leave.guard";
 import { APP_ROUTES } from "./config/app-routes.config";
 import { TestObservableComponent } from "./rxjs/test-observable/test-observable.component";
+import { ProductsComponent } from "./products/products.component";
 
 // cv/add
 const routes: Route[] = [
@@ -59,6 +60,7 @@ const routes: Route[] = [
     component: AdminComponent,
     children: [{ path: "color", component: ColorComponent }],
   },
+  { path: APP_ROUTES.products, component: ProductsComponent },
   { path: "**", component: NF404Component },
 ];
 
