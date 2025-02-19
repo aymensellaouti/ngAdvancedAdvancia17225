@@ -16,6 +16,9 @@ export class MasterDetailComponent {
   router = inject(Router);
   toastr = inject(ToastrService);
   constructor() {
+    this.cvService.selectedCv$.subscribe({
+      next: (cv) => this.router.navigate([cv.id], { relativeTo: this.acr }),
+    });
     /*     this.cvService.getCvs().subscribe({
       next: (cvs) => {
         this.cvs = cvs;
@@ -28,8 +31,4 @@ export class MasterDetailComponent {
       },
     }); */
   }
-
-  /*  getSelectedCv(cv: Cv) {
-    this.router.navigate([cv.id], { relativeTo: this.acr });
-  } */
 }

@@ -26,7 +26,7 @@ export class CvComponent {
       return of(this.cvService.getFakeCvs());
     })
   );
-  selectedCv: Cv | null = null;
+  selectedCv$: Observable<Cv> = this.cvService.selectedCv$;
   /*   selectedCv: Cv | null = null; */
   date = new Date();
   loggers = inject(ILoggerToken);
