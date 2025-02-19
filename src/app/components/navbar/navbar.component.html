@@ -79,6 +79,12 @@
           >Observable</a
         >
         <a
+          class="nav-link"
+          [routerLink]="[routes.products]"
+          routerLinkActive="active text-primary"
+          >Products</a
+        >
+        <a
           *ngIf="authService.isLoggedOut$ | async"
           class="nav-link"
           [routerLink]="['login']"
