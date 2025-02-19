@@ -17,7 +17,7 @@ import { APP_ROUTES } from "../../config/app-routes.config";
   templateUrl: "./add-cv.component.html",
   styleUrls: ["./add-cv.component.css"],
 })
-export class AddCvComponent implements OnDestroy {
+export class AddCvComponent {
   formBuilder = inject(FormBuilder);
   cvService = inject(CvService);
   toastr = inject(ToastrService);
@@ -67,8 +67,6 @@ export class AddCvComponent implements OnDestroy {
       },
     });
   }
-
-  ngOnDestroy(): void {}
 
   get name(): AbstractControl {
     return this.form.get("name")!;
