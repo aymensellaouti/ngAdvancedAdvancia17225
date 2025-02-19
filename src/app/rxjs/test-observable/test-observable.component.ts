@@ -1,5 +1,12 @@
 import { Component, OnDestroy } from "@angular/core";
-import { Observable, Subscription, filter, map } from "rxjs";
+import {
+  Observable,
+  Subject,
+  Subscription,
+  filter,
+  map,
+  takeUntil,
+} from "rxjs";
 import { ToastrService } from "ngx-toastr";
 
 @Component({
@@ -7,8 +14,10 @@ import { ToastrService } from "ngx-toastr";
   templateUrl: "./test-observable.component.html",
   styleUrls: ["./test-observable.component.css"],
 })
-export class TestObservableComponent {
+export class TestObservableComponent implements OnDestroy {
   firstObservable$: Observable<number>;
+  subscription = new Subscription();
+  bootstrapUnsubscription = new Subject();
   /*  countdown = 5; */
   constructor(private toaster: ToastrService) {
     this.firstObservable$ = new Observable((observer) => {
@@ -22,24 +31,30 @@ export class TestObservableComponent {
     });
 
     // Subscriber 1
-    this.firstObservable$.subscribe({
-      next: (value) => console.log(value),
-    });
+    /*     this.subscription.add( */
+    this.firstObservable$
+      .pipe(takeUntil(this.bootstrapUnsubscription))
+      .subscribe({
+        next: (value) => console.log(value),
+      });
+    /*     ); */
 
     /*     setTimeout(() => { */
     //Subscriber 2
-    this.firstObservable$
-      // 5 4 3 2 1
-      .pipe(
-        map((valeur) => valeur * 3),
-        // 15 12 9 6 3
-        filter((val) => !(val % 2))
-        // 12 6
-      )
-      .subscribe({
-        next: (value) => toaster.info("" + value),
-        complete: () => toaster.error("BOOOOM"),
-      });
+    this.subscription.add(
+      this.firstObservable$
+        // 5 4 3 2 1
+        .pipe(
+          map((valeur) => valeur * 3),
+          // 15 12 9 6 3
+          filter((val) => !(val % 2))
+          // 12 6
+        )
+        .subscribe({
+          next: (value) => toaster.info("" + value),
+          complete: () => toaster.error("BOOOOM"),
+        })
+    );
     /*     }, 3000);
      */
 
@@ -47,5 +62,10 @@ export class TestObservableComponent {
     /* this.firstObservable$.subscribe({
       next: (value) => (this.countdown = value),
     }); */
+  }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+    this.bootstrapUnsubscription.next("elli iji");
+    this.bootstrapUnsubscription.complete();
   }
 }

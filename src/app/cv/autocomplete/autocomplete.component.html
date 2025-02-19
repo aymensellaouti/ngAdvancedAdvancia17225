@@ -1,3 +1,4 @@
 <form [formGroup]="form">
   <input type="text" class="form-control" formControlName="search" />
+  <app-list [cvs]="cvs$ | async" />
 </form>

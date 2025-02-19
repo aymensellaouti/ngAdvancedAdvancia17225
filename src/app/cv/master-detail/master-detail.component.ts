@@ -1,4 +1,5 @@
 import { Component, inject } from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { ToastrService } from "ngx-toastr";
 import { Cv } from "../model/cv";
 import { CvService } from "../services/cv.service";
@@ -16,7 +17,7 @@ export class MasterDetailComponent {
   router = inject(Router);
   toastr = inject(ToastrService);
   constructor() {
-    this.cvService.selectedCv$.subscribe({
+    this.cvService.selectedCv$.pipe(takeUntilDestroyed()).subscribe({
       next: (cv) => this.router.navigate([cv.id], { relativeTo: this.acr }),
     });
     /*     this.cvService.getCvs().subscribe({
