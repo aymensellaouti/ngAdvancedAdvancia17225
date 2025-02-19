@@ -23,28 +23,6 @@ export class ProductsComponent {
   productService = inject(ProductService);
   /* Todo : Faire le nécessaire pour créer le flux des produits à afficher */
   /* Tips : vous pouvez voir les différents imports non utilisés et vous en inspirer */
-  // settings setiing1 -setting2 ....
-  products$: Observable<Product[]> = this.settings$.pipe(
-    // productsResponse1  ProductResponse2 ....
-    concatMap((setting) => this.productService.getProducts(setting)),
-    // products1 products2 ....
-    map((prductResponse) => prductResponse.products),
-    // kamel haka 7ata lin ma 3ad teb3athli chay
-    takeWhile((products) => {
-      if (!products.length) {
-        this.isDisabled = true;
-        return false;
-      }
-      return true;
-    }),
-    // concatinihom avec les anciens products
-    scan((oldProducts, newProducts) => [...oldProducts, ...newProducts])
-  );
-  getMore() {
-    this.setting = {
-      ...this.setting,
-      skip: this.setting.skip + this.setting.limit,
-    };
-    this.settings$.next(this.setting);
-  }
+  products$!: Observable<Product[]>;
+  constructor() {}
 }
