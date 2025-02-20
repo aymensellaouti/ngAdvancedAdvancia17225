@@ -47,6 +47,8 @@ import { ILoggerToken } from "./injectionTokens/ILogger.token";
 import { UUID_PROVIDER } from "./providers/uuid.provide";
 import { NgxUiLoaderModule } from "ngx-ui-loader";
 import { FromOfComponent } from "./rxjs/from-of/from-of.component";
+import { UserListElementsComponent } from './optimizationPattern/user-list-elements/user-list-elements.component';
+import { FiboPipe } from './pipes/fibo.pipe';
 
 @NgModule({
   declarations: [
@@ -78,6 +80,8 @@ import { FromOfComponent } from "./rxjs/from-of/from-of.component";
     UserListComponent,
     ProductsComponent,
     FromOfComponent,
+    UserListElementsComponent,
+    FiboPipe,
   ],
   imports: [
     BrowserModule,
