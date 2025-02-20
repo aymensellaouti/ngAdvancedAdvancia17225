@@ -12,6 +12,12 @@
   <input type="text" class="form-control" formControlName="firstname" /> Age:
   <input type="text" class="form-control" formControlName="age" /> Cin:
   <input type="text" class="form-control" formControlName="cin" />
+  <div
+    *ngIf="cin.errors && cin.errors['uniqueCin'] && cin.touched"
+    class="alert alert-danger"
+  >
+    {{ cin.errors["uniqueCin"] }}
+  </div>
   Job: <input type="text" class="form-control" formControlName="job" /> Path:
   <input type="text" class="form-control" formControlName="path" />
   <button [disabled]="form.invalid" class="btn btn-primary" (click)="addCv()">
