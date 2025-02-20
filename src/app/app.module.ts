@@ -22,7 +22,6 @@ import { DetailsCvComponent } from "./cv/details-cv/details-cv.component";
 import { NgstyleComponent } from "./directives/ngstyle/ngstyle.component";
 import { MiniWordComponent } from "./directives/mini-word/mini-word.component";
 import { NgclassComponent } from "./directives/ngclass/ngclass.component";
-import { TodoComponent } from "./todo/todo/todo.component";
 
 import { HighlightDirective } from "./directives/highlight.directive";
 import { RainbowDirective } from "./directives/rainbow.directive";
@@ -49,8 +48,6 @@ import { ProductsComponent } from "./products/products.component";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { AutocompleteComponent } from "./cv/autocomplete/autocomplete.component";
 import { SliderComponent } from "./rxjs/slider/slider.component";
-import { loggerServiceFactory } from "./factory/loggerService.factory";
-import { LOGGER_SERVICE_TOKEN } from "./injectionTokens/loggerService.injection-token";
 import { LoggerService } from "./services/logger.service";
 import { CvService } from "./cv/services/cv.service";
 import { CONSTANTES } from "../config/const.config";
@@ -58,10 +55,10 @@ import { FakeCvService } from "./cv/services/fake-cv.service";
 import { Logger2Service } from "./services/logger2.service";
 import { ILoggerToken } from "./injectionTokens/ILogger.token";
 import { UUID_PROVIDER } from "./providers/uuid.provide";
-import { WeekTodoComponent } from "./todo/week-todo/week-todo.component";
 import { MasterDetailComponent } from "./cv/master-detail/master-detail.component";
 import { NgxUiLoaderModule } from "ngx-ui-loader";
 import { FromOfComponent } from "./rxjs/from-of/from-of.component";
+import { TodoModule } from "./todo/todo.module";
 
 @NgModule({
   declarations: [
@@ -89,7 +86,6 @@ import { FromOfComponent } from "./rxjs/from-of/from-of.component";
     HighlightDirective,
     RainbowDirective,
     Btc2usdPipe,
-    TodoComponent,
     NavbarComponent,
     FrontComponent,
     AdminComponent,
@@ -102,7 +98,6 @@ import { FromOfComponent } from "./rxjs/from-of/from-of.component";
     RhComponent,
     UserListComponent,
     ProductsComponent,
-    WeekTodoComponent,
     MasterDetailComponent,
     FromOfComponent,
   ],
@@ -112,6 +107,7 @@ import { FromOfComponent } from "./rxjs/from-of/from-of.component";
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
     AppRoutingModule,
+    TodoModule,
     HttpClientModule,
     ReactiveFormsModule,
     NgxUiLoaderModule,
