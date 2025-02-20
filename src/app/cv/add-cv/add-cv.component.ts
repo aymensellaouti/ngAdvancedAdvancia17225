@@ -12,6 +12,7 @@ import { Router } from "@angular/router";
 import { APP_CONSTANTES } from "../../config/app_const.config";
 import { APP_ROUTES } from "../../config/app-routes.config";
 import { uniqueCinValidator } from "../validators/unique-cin.validator";
+import { ageCinValidator } from "../validators/age-cin.validator";
 
 @Component({
   selector: "app-add-cv",
@@ -46,9 +47,9 @@ export class AddCvComponent implements OnDestroy {
       ],
     },
     {
-      validators: [],
+      validators: [ageCinValidator],
       asyncValidators: [],
-      updateOn: "change",
+      updateOn: "blur",
     }
   );
   constructor() {
