@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { RouterModule, Route } from "@angular/router";
+import { RouterModule, Route, PreloadAllModules } from "@angular/router";
 import { canLeaveGuard } from "../guards/can-leave.guard";
 import { TodoComponent } from "./todo/todo.component";
 
@@ -12,7 +12,7 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
 export class TodoRoutingModule {}

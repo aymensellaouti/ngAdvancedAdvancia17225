@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { RouterModule, Route } from "@angular/router";
+import { RouterModule, Route, PreloadAllModules } from "@angular/router";
 import { MiniWordComponent } from "./directives/mini-word/mini-word.component";
 import { ColorComponent } from "./components/color/color.component";
 import { FrontComponent } from "./templates/front/front.component";
@@ -10,6 +10,7 @@ import { RhComponent } from "./optimizationPattern/rh/rh.component";
 import { APP_ROUTES } from "./config/app-routes.config";
 import { TestObservableComponent } from "./rxjs/test-observable/test-observable.component";
 import { ProductsComponent } from "./products/products.component";
+import { CustomPreloadingStrategy } from "./preloadingStrategy/custom.preloading-strategy";
 
 // cv/add
 const routes: Route[] = [
@@ -31,6 +32,9 @@ const routes: Route[] = [
   { path: APP_ROUTES.products, component: ProductsComponent },
   {
     path: APP_ROUTES.cv,
+    data: {
+      preload: true,
+    },
     loadChildren: () => import("./cv/cv.module").then((m) => m.CvModule),
   },
   {
@@ -41,7 +45,11 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: CustomPreloadingStrategy,
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
